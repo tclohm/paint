@@ -3,6 +3,7 @@ package swatch
 import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
+	"image/color"
 )
 
 type SwatchRenderer struct {

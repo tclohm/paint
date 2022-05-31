@@ -28,13 +28,13 @@ func NewSwatch(state *apptype.State, color color.Color, swatchIndex int, clickHa
 		clickHandler: clickHandler,
 		SwatchIndex: swatchIndex,
 	}
-	swatch.ExtendBaseWidth(swatch)
+	swatch.ExtendBaseWidget(swatch)
 	return swatch
 }
 
 func (swatch *Swatch) CreateRenderer() fyne.WidgetRenderer {
 	square := canvas.NewRectangle(swatch.Color)
-	objects ;= []fyne.CanvasObject{square}
+	objects := []fyne.CanvasObject{square}
 	return &SwatchRenderer {
 		square: *square,
 		objects: objects,
