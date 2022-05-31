@@ -2,7 +2,7 @@ package apptype
 
 import (
 	"fyne.io/fyne/v2"
-	"color"
+	"image/color"
 )
 
 type BrushType = int
