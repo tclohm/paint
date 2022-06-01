@@ -8,7 +8,6 @@ func (paintcanvas *PaintCanvas) Pan(prevCoord, currCoord fyne.PointEvent) {
 
 	paintcanvas.CanvasOffset.X += xDiff
 	paintcanvas.CanvasOffset.Y += yDiff
-
 	paintcanvas.Refresh()
 }
 

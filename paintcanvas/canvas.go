@@ -84,7 +84,7 @@ func (paintcanvas *PaintCanvas) CreateRenderer() fyne.WidgetRenderer {
 }
 
 func (paintcanvas *PaintCanvas) TryPan(prevCoord *fyne.PointEvent, event *desktop.MouseEvent) {
-	if prevCoord != nil && event.Button == desktop.MouseButtonTertiary {
+	if prevCoord != nil && event.Button == desktop.MouseButtonSecondary {
 		paintcanvas.Pan(*prevCoord, event.PointEvent)
 	}
 }
