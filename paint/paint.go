@@ -2,10 +2,12 @@ package main
 
 import (
 	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2"
 	"image/color"
 	"github.com/tclohm/paint/ui"
 	"github.com/tclohm/paint/apptype"
 	"github.com/tclohm/paint/swatch"
+	"github.com/tclohm/paint/paintcanvas"
 )
 
 
@@ -18,7 +20,18 @@ func main() {
 		SwatchSelected: 0,
 	}
 
+	paintCanvasConfig := apptype.CanvasConfig{
+		DrawingArea: fyne.NewSize(600, 600),
+		CanvasOffset: fyne.NewPos(0,0),
+		PxRows: 10,
+		PxCols: 10,
+		PxSize: 30,
+	}
+
+	paintCanvas := paintcanvas.NewCanvas(&state, paintCanvasConfig)
+
 	appInit := ui.AppInit{
+		PaintCanvas: paintCanvas,
 		PaintWindow: paintWindow,
 		State: &state,
 		Swatches: make([]*swatch.Swatch, 0, 64),

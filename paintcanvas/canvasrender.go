@@ -1,4 +1,4 @@
-package canvas
+package paintcanvas
 
 import (
 	"fyne.io/fyne/v2"
@@ -6,14 +6,14 @@ import (
 )
 
 type CanvasRenderer struct {
-	canvas *Canvas
+	paintCanvas *PaintCanvas
 	canvasImage *canvas.Image
 	canvasBorder []canvas.Line
 }
 
 // widgetrenderer interface implementation
 func (renderer *CanvasRenderer) MinSize() fyne.Size {
-	return renderer.canvas.DrawingArea
+	return renderer.paintCanvas.DrawingArea
 }
 
 // widgetrenderer interface implementation
@@ -36,26 +36,26 @@ func (renderer *CanvasRenderer) Layout(size fyne.Size) {
 }
 
 func (renderer *CanvasRenderer) Refresh() {
-	if renderer.canvas.reloadImage {
-		renderer.canvasImage = canvas.NewImageFromImage(renderer.canvas.PixelData)
+	if renderer.paintCanvas.reloadImage {
+		renderer.canvasImage = canvas.NewImageFromImage(renderer.paintCanvas.PixelData)
 		renderer.canvasImage.ScaleMode = canvas.ImageScalePixels
 		renderer.canvasImage.FillMode = canvas.ImageFillContain
-		renderer.canvas.reloadImage = false
+		renderer.paintCanvas.reloadImage = false
 	}
-	renderer.Layout(renderer.canvas.Size())
+	renderer.Layout(renderer.paintCanvas.Size())
 	canvas.Refresh(renderer.canvasImage)
 }
 
 func (renderer *CanvasRenderer) LayoutCanvas(size fyne.Size) {
-	imgWidth := renderer.canvas.PxCols
-	imgHeight := renderer.canvas.PxRows
-	size := renderer.canvas.PxSize
-	renderer.canvasImage.Move(fyne.NewPos(renderer.canvas.CanvasOffset.X, renderer.canvas.CanvasOffset.Y))
-	renderer.canvasImage.Resize(fyne.NewSize(float32(imgWidth*size), float32(imgHeight*PxSize)))
+	imgWidth := renderer.paintCanvas.PxCols
+	imgHeight := renderer.paintCanvas.PxRows
+	paintSize := renderer.paintCanvas.PxSize
+	renderer.canvasImage.Move(fyne.NewPos(renderer.paintCanvas.CanvasOffset.X, renderer.paintCanvas.CanvasOffset.Y))
+	renderer.canvasImage.Resize(fyne.NewSize(float32(imgWidth*paintSize), float32(imgHeight*paintSize)))
 }
 
 func (renderer *CanvasRenderer) LayoutBorder(size fyne.Size) {
-	offset := renderer.canvas.CanvasOffset
+	offset := renderer.paintCanvas.CanvasOffset
 	imgWidth := renderer.canvasImage.Size().Width
 	imgHeight := renderer.canvasImage.Size().Height
 	
