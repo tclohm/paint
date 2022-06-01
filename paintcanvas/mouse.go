@@ -15,6 +15,10 @@ func (paintcanvas *PaintCanvas) MouseMoved(event *desktop.MouseEvent) {
 	// hold and paint
 	if x, y := paintcanvas.MouseToCanvasXY(event); x != nil && y != nil {
 		brush.TryBrush(paintcanvas.appState, paintcanvas, event)
+		cursor := brush.Cursor(paintcanvas.CanvasConfig, paintcanvas.appState.BrushType, event, *x, *y)
+		paintcanvas.renderer.SetCursor(cursor)
+	} else {
+		paintcanvas.renderer.SetCursor(make([]fyne.CanvasObject, 0))
 	}
 	// pan
 	paintcanvas.TryPan(paintcanvas.mouseState.prevCoord, event)
