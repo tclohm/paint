@@ -12,6 +12,11 @@ func (paintcanvas *PaintCanvas) Scrolled(event *fyne.ScrollEvent) {
 }
 
 func (paintcanvas *PaintCanvas) MouseMoved(event *desktop.MouseEvent) {
+	// hold and paint
+	if x, y := paintcanvas.MouseToCanvasXY(event); x != nil && y != nil {
+		brush.TryBrush(paintcanvas.appState, paintcanvas, event)
+	}
+	// pan
 	paintcanvas.TryPan(paintcanvas.mouseState.prevCoord, event)
 	paintcanvas.Refresh()
 	paintcanvas.mouseState.prevCoord = &event.PointEvent
