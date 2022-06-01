@@ -4,6 +4,7 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/widget"
+	"fyne.io/fyne/v2/driver/desktop"
 	"image"
 	"github.com/tclohm/paint/apptype"
 	"image/color"
@@ -81,3 +82,11 @@ func (paintcanvas *PaintCanvas) CreateRenderer() fyne.WidgetRenderer {
 	paintcanvas.renderer = renderer
 	return renderer
 }
+
+func (paintcanvas *PaintCanvas) TryPan(prevCoord *fyne.PointEvent, event *desktop.MouseEvent) {
+	if prevCoord != nil && event.Button == desktop.MouseButtonTertiary {
+		paintcanvas.Pan(*prevCoord, event.PointEvent)
+	}
+}
+
+
