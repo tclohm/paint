@@ -134,7 +134,7 @@ func (paintcanvas *PaintCanvas) NewDrawing(cols, rows int) {
 	paintcanvas.appState.SetFilePath("")
 	paintcanvas.PxCols = cols
 	paintcanvas.PxRows = rows
-	canvasData := NewBlankImage(cols, rows, color.NRGBA{128, 128, 128, 128, 255})
+	canvasData := NewBlankImage(cols, rows, color.NRGBA{128, 128, 128, 255})
 	paintcanvas.LoadImage(canvasData)
 }
 
